@@ -32,6 +32,7 @@
                 <hr>
                 <h4>{{mars.news_title}}</h5>
                 <p>{{mars.news_p}}</p>
+                <p>{{mars.featured_image_url}}</p>
             </div>
         </div>
         </div>
@@ -93,7 +94,7 @@
 							{% for hemisphere in mars.hemispheres %}
                                 <div class="col-md-6">
                                     <div class="thumbnail">
-                                    <img src="{{hemisphere.imgage_url}}"
+                                    <img src="{{hemisphere.image_url}}"
                                         alt="...">
                                     <div class="caption">
                                         <h2>{{hemisphere.title}}</h2>
