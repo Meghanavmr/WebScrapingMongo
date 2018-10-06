@@ -74,7 +74,12 @@ def scrape():
 
     news['featured_image_url'] =featured_image_url
 
-    # browser.quit()
+    news['mars_weather'] = scrape_weather()
+    news['mars_facts'] = scrape_facts()
+    news['mars_hemisphere'] = scrape_hemisphere()
+
+    print(news)
+    browser.quit()
     # Return results
     return news
 
@@ -127,14 +132,21 @@ def scrape_weather():
     soup = BeautifulSoup(response.text, 'html.parser')
     
     # Find latest tweet and save it
-    mars_weather = soup.find("p", class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text").text
-    
+    mars_weather = soup.find_all("p", class_="TweetTextSize TweetTextSize--normal js-tweet-text tweet-text")
+
     weather = {
-          "mars_weather": mars_weather,
-        
+          "mars_weather": mars_weather
         }
     
-    return weather
+    for item in weather['mars_weather']:
+        if item.text[0:3]=='Sol':
+            result= item.text
+            break
+        else:
+            result="No Weather Info Found"
+        
+        
+    return result
 
 
 def scrape_facts():
@@ -158,12 +170,12 @@ def scrape_facts():
      # Clean up html table
      html_table_clean = html_table.replace('\n', '')
     
-     facts = {
-        "mars_facts": html_table_clean,
+#      facts = {
+#         "mars_facts": html_table_clean,
         
-        }
+#         }
      
-     return facts
+     return html_table_clean
 
  
 # Define function to collect data from all title links
@@ -223,8 +235,8 @@ def scrape_hemisphere():
         hemisphere_image_urls.append(temp)
         time.sleep(5)
         
-    hemi = {
-        "mars_hemisphere": hemisphere_image_urls,
+#     hemi = {
+#         "mars_hemisphere": hemisphere_image_urls,
         
-        }
-    return hemi
+#         }
+    return hemisphere_image_urls

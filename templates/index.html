@@ -32,7 +32,6 @@
                 <hr>
                 <h4>{{mars.news_title}}</h5>
                 <p>{{mars.news_p}}</p>
-                <p>{{mars.featured_image_url}}</p>
             </div>
         </div>
         </div>
@@ -72,7 +71,7 @@
                         <div class="panel-body">
                             <h2>Mars Facts</h2>
                             <hr>
-                            <p>{{mars.facts | safe}}</p>
+                            <p>{{mars.mars_facts | safe}}</p>
                         </div>
                     </div>
                 </div>
@@ -86,15 +85,15 @@
         <div class="page-header">
           <h2 class="text-center">Mars Hemispheres</h2>
         </div>
-
+        {{mars.mars_hemisphere}}
         <div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">						
 						<div class="panel-body">
-							{% for hemisphere in mars.hemispheres %}
+							{% for hemisphere in mars.mars_hemisphere %}
                                 <div class="col-md-6">
                                     <div class="thumbnail">
-                                    <img src="{{hemisphere.image_url}}"
+                                    <img src="{{hemisphere.img_url}}"
                                         alt="...">
                                     <div class="caption">
                                         <h2>{{hemisphere.title}}</h2>
